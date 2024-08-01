@@ -1,0 +1,108 @@
+GIT NOTES
+
+***DONT FORGET TO COMPLETE COMMIT AFTER EACH CHANGE TO THIS OR ANY FILE!!***
+GIT is a version control utility
+
+Create git repository = git init new repository name
+
+List git directory and show changes = ls -l
+
+List contents of the directory = ls -l .git
+**use cd .git to navigate to .git directory and open files from there** 
+
+Create a text (or any type of file) in the directory = nano, vim, xdg (xdg is the linux default note reader writer similar to microsoft text) <new name of file>
+
+Get status of the repository = git status
+**(you must be inside repsitory directory for this to work) once executed if anything is changed it will let you know.**
+**A new or changed file would be indicated in red and be indicated as untracked file becasue ithas not been commited. Meaning the file may be saved but it's not officialy part of the repository. You have to tell git manually that you want that file to be a part of version control.**
+
+ADD staged file to commit = git add <filename>  | ADD all staged files to commit = git add -A
+**Once the file/s is added to the commit the status will be different the file color will now be green as opposed to red.Also instead of showing "untracked files" it will show; "changes to be commitied"**
+
+Steps to take before finalizing commit
+Enter information about the person working on the code using git config
+
+to add user info = git config --global user.name <"name here">
+..............................--global user.email <emailaddy@whatever.com>
+
+**The above lists the name and email address of the person working on the repository in the system**
+**Check the git config file to see info of last person who worked on the file (user,email)=
+git config --list
+
+Finalizing commit = git commit -m <"message about commit">
+**If it's the first time the file is in version control a good thing to do is start message above with "initial commit"**
+
+**If successful you will see "On branch master, nothing to commit working tree clean after running "git status"**
+
+Create a new branch = git branch <name of new branch>
+
+List branches = git branch
+ 
+Switch to new or any branch = git checkout <name of branch> 
+
+Delete branch = git branch --delete <name of branch you want to delete>
+
+Reverting back to previos commit:
+1) Check lines that will include hash (alpha numerics at the start of the line) = git log --oneline
+2) Select commit to revert = git revert <hash you want removed>
+**will show hash of reverted commit, then you can add message**
+
+Cloning:
+-Pull down a repository exisiting in a remote (ex;github or gitlab) and save it locally
+ It allows you to work on it locally then push it back to the remote (make sure to exit out of current reposiTory, cd..) 
+-Visit github page
+-Look for the repository and click on in
+-Look for code and click on it
+-Select https (you can use ssh if you have it setup and know how)
+-Copy link
+-Go to terminal and enter git clone <paste link here>
+-ls to see files
+-From there you can cd into it and any files and work on the file/code locally
+
+Create repo in github from CLI (Command line interface) using curl command
+curl -u <"your github username"> https://api.github.com/user/repos -d '{"name":"Name of repo","public":"true"}'
+**use "private":"true" instead for private repo**
+**"name" and "public" are objects withihn that string**
+**use only single quite outside the string**
+**When asked for passowrd you must use private access key/token instead as github removed support for passords**
+Generate PAT (Private access token):
+-In github go to settings
+-Scroll to Developer Settings
+-Click on PATs
+-Click on Gnerate New Token then Token Classic
+-Select experation 7days, never etc
+-Select checkboxes:
+repo
+read packages
+delete packages
+admin:org
+admin public_key
+read user 
+user email
+user follow
+delete repo
+admin enterprise
+project
+admin:gpg_key
+admin:ssh_signing_key
+
+Add remote origin url in order to push local repository to github repo = git remote add origin <url to repo>
+-Won't look like anything happens and will return to the command line that's simply becasue the origin was changed and nothing was actually pushed. Basically this sets the origin.
+
+Push file once origin is set/changed = git push origin <master> or <branchname>
+-enter username
+-enter private access token
+
+Change remote origin url = git remote set-url origin <new url> 
+
+Add README.md from CLI and push to repo (markdown file):
+
+-Create README.md file in repository
+-Add content, save and close
+-Git add and git commit locally (see above for process)
+-Push to repo using git push origin command per above (do not need git remote command cause origin set unless  origin needs to be changed/updatd)
+
+ 
+
+
+  

@@ -64,7 +64,7 @@ curl -u <"your github username"> https://api.github.com/user/repos -d '{"name":"
 **use "private":"true" instead for private repo**
 **"name" and "public" are objects withihn that string**
 **use only single quite outside the string**
-**When asked for passowrd you must use private access key/token instead as github removed support for passords**
+**When asked for passowrd you must use private access key/token instead as github removed support for passwords**
 Generate PAT (Private access token):
 -In github go to settings
 -Scroll to Developer Settings

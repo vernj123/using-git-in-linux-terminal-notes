@@ -47,6 +47,54 @@ Reverting back to previos commit:
 2) Select commit to revert = git revert <hash you want removed>
 **will show hash of reverted commit, then you can add message**
 
+**UNSTAGE REVERSE GIT ADD (IF NOT COMMITED)**= git reset
+Will remove them from the “staged” area without deleting anything locally.
+
+🧩 Case 1: You committed a file but have NOT pushed yet
+✅ Option A: Undo the commit but keep your changes (If you realized right after committing)=git reset --soft HEAD~1
+This:
+-Removes the last commit from history
+-Keeps your changes in the staging area (as if you ran git add again)
+-You can then fix things (e.g., git restore --staged unwanted_file) and recommit properly.
+
+✅ Option B: Undo the commit and unstage changes
+If you want to keep the file changes but not have them staged=git reset HEAD~1
+Now your working directory keeps your changes, but git status will show them as unstaged.
+
+✅ Option C: Undo the commit and discard changes entirely
+⚠️ Only if you really want to throw it all away=git reset --hard HEAD~1
+This deletes the last commit and all the code changes it contained — cannot be undone easily.
+
+🧠 Case 2: You already pushed the commit to GitHub
+Once it’s pushed, things change slightly.
+✅ Option A: Revert safely (recommended)
+Create a new “undo” commit that removes the previous one=git revert <commit_hash>
+It doesn’t rewrite history — just applies the opposite of that commit.
+Then push as normal=git push origin main
+
+⚠️ Option B: Rewrite history (only if you must and no one else has pulled)
+You can still reset, but then you’ll need to force-push=
+git reset --hard HEAD~1
+git push --force origin main
+⚠️ Only use --force on personal branches or solo repos — it rewrites commit history on the remote
+
+🧹Remove a specific file from history
+If you accidentally committed something sensitive or large (e.g., .env, credentials)=
+git rm --cached secret_file.txt
+git commit -m "Remove secret_file.txt from repo"
+git push origin main
+
+
+**.gitignore**  Excludes files from pushing to github
+
+Create/Navigate to .gitignore file= (In my case casue I use vim)= vim .gitignore
+
+then add the files to .gitignore
+ex:
+# Environment variables/secrets
+.env
+
+
 Cloning:
 -Pull down a repository exisiting in a remote (ex;github or gitlab) and save it locally
  It allows you to work on it locally then push it back to the remote (make sure to exit out of current reposiTory, cd..) 

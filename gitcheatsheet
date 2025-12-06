@@ -94,8 +94,10 @@ ex:
 # Environment variables/secrets
 .env
 
+REMOVE UNTRACKED FILES= git clean -i 
+Enables an interactive mode, allowing users to selectively remove untracked files. This mode is useful when you want more control over which files or directories are deleted.
 
-Cloning:
+CLONING:
 -Pull down a repository exisiting in a remote (ex;github or gitlab) and save it locally
  It allows you to work on it locally then push it back to the remote (make sure to exit out of current reposiTory, cd..) 
 -Visit github page
